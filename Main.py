@@ -348,7 +348,6 @@ class MyGame(arcade.Window):
         coins_hit_list=arcade.check_for_collision_with_list(self.player_sprite, self.coin_list)
         for coin in coins_hit_list:
             coin.remove_from_sprite_lists()
-            arcade.play_sound(self.game_over)
             self.score+=1
         if len(self.coin_list)==0 and self.level==1:
             self.level+=1
@@ -363,6 +362,7 @@ class MyGame(arcade.Window):
 
         bird_hit_list=arcade.check_for_collision_with_list(self.player_sprite, self.bird_list)
         if any(bird_hit_list):
+            arcade.play_sound(self.game_over)
             self.current_state = GAME_OVER
 
         if self.player_sprite.left < 0:
